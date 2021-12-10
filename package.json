@@ -1,5 +1,9 @@
 {
   "name": "quick-match",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@types/node": "16",
+    "typescript": "^4.5.3"
+  }
 }
