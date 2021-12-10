@@ -7,25 +7,34 @@ const client = new Client({
 });
 const TOKEN = process.env.TOKEN;
 
-client.on("ready", () => {
+client.on("ready", async () => {
   console.log("Ready");
-  client.user?.setActivity("!match", {
+
+  client.user?.setActivity("/match", {
     type: "PLAYING",
   });
+
+  await client.application?.commands.set([
+    {
+      name: "match",
+      description: "新しいセッションを開始します。",
+    },
+  ]);
 });
 
-client.on("messageCreate", (message) => {
-  if (message.author.bot) {
+client.on("interactionCreate", async (interaction) => {
+  if (!interaction.isCommand()) {
     return;
   }
-  if (message.content === "!match") {
+
+  if (interaction.commandName === "match") {
     const row = new MessageActionRow().addComponents(
       new MessageButton()
         .setCustomId("ready")
         .setStyle("PRIMARY")
         .setLabel("READY")
     );
-    message.channel.send({
+    await interaction.channel?.send({
       content: "準備完了なら押してください",
       components: [row],
     });
