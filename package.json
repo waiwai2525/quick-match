@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "node ./dist/index.js",
+    "start": "node ./dist/index.js",
     "debug": "ts-node ./src/index.ts",
     "build": "tsc",
     "lint:eslint": "eslint src --ext .ts,.js --fix",
